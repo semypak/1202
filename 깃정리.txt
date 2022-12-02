@@ -1,0 +1,75 @@
+git --version 으로 https://git-scm.com/ 사이트의 버젼과 같은 지 확인.
+
+내가 관리하고 싶은 폴더에서 shift + 우클릭 // 파워쉘 오픈.
+터미널에서 명령 (Git Bash)
+	git config --global user.name "(본인 이름)"
+	git config --global user.email "(본인 이메일)"
+
+터미널에서 확인하기
+	git config --global user.name 
+	git config --global user.email
+	
+기본 브랜치명 변경
+	git config --global init.defaultBranch main
+		원래 이름이 master 였으니 흑인노예문제로 main으로 변경하는 추세임.
+	git branch -M main
+	
+테스트 해보기
+	탐색기에서 임의의 폴더 생성
+	폴더를 vscode로 열기 // bash 터미널 열기
+	1.git init  // 탐색기 폴더에서 숨김파일 보기 하면 git 폴더가 생성된 것을 확인해  볼수 있다.repository를 생성하는 거임.
+		이 폴더를 지우면 관리내역이 전부 삭제됨.<< git repository 임.
+		그리고, 현재 폴더의 뒤애 (main)이라고 된 것을 볼 수있다.
+	2.git status
+	
+	35:00 참고 https://www.youtube.com/watch?v=1I3hMwQU6GU&t=868s
+	.gitignore  // 파일을 만들고, 그 안에 숨기고 싶은 것들을 저장.git 관리에 포함하지 말아야 될 것들.
+	git status 로 확인해 보면 .gitignore 에 써 있는 파일은 보이지 않음.
+	
+	3.git add 관리하고 싶은 파일 이름
+		git add .  // 모든 파일을 뜻함.
+		git commit -m '아무이름'
+		
+	4.git log --all --oneline  // 커밋한 모든 내용을 보고 싶을때 
+	
+	git diff  // 바뀐 파일이 어떤 부분이 바뀌었는지 보여줌. 잘 안씀.
+			j/k로 스크롤바 조작, q는 종료
+	git difftool // 위와 동일 하나, 시각적으로 보여줌. h j k l 키가 방향키임.
+		종료는 :qa 또는 :q
+	git difftool 아이디1입력 아이디2엽력  /// 입력한 아이디가 어떤 것이 다르지 보여 줌.(2개까지)
+		아이디는 git log --all --oneline 명령으로 우측에 있는 숫자와 영문조합임.
+		
+	VSCode 익스텐션 git graph 설치 하면 diff보다 좋게 알려 줌.(diff 쓸 필요 없음)
+		VSCode에서 중간 아이콘에 그래프 아이콘 있슴. 
+	--branch 만들기--
+		사본임
+		git branch 만들고싶은이름
+	 branch 로 전환하기
+		git switch 만든이름
+	branch 에서 만든 것은 main에서 보이지 않은 각각 독립적임.
+	
+	git log --all --oneline --graph  // 브런치와 메인 보여 줌.head 는 현재 위치
+
+--- 메인과 브런치 함치기 merge ----
+	git merge 합칠브런치이름
+	merge 완료된 브런치 삭제  git branch -d 브런치명
+	merge 한한 브런치 삭제  git branch -D 브런치명
+	
+----최근 commit 상태로 되돌리기
+	git log --oneline 에서 확인
+	git restore 파일이름
+
+-- 온라인에 올리기
+	1.https://github.com/semypak 에서 repository 생성
+	2. 거기 가보면 http에서 링크 복사
+	3.git push -u 주소 main  // 근데 주소가 길어서 변수 저장 관리를 한다.
+		담부터는 git push 만 해도 됨.
+	4.git remote add 내가지은변수이름 깃주소
+		담부터는 git remote add 내가지은변수이름 // 3번 이용 안해도 됨.
+	
+--- 타인과 협업하기
+	폴더를 만들고.
+	git clone 깃허브저장소주소
+	git push 조건
+		조건 사항 : 팀원이 깃허브아이디가 있어야 함.
+				공유자가 setting / collaborators에 아이디를 등록해야 함.
